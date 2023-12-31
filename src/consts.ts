@@ -7,5 +7,6 @@ export enum DependencyKind {
   CommonJS = 'CommonJS', // require
   StaticImport = 'StaticImport', // import ... from "foo"
   DynamicImport = 'DynamicImport', // import("foo")
+  DynamicRequire = "DynamicRequire", // () => require("foo")
   StaticExport = 'StaticExport', // export ... from "foo"
 }

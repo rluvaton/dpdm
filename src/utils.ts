@@ -147,7 +147,7 @@ export function parseCircular(
         deps.forEach((dep) => {
           if (
             dep.id &&
-            (!skipDynamicImports || dep.kind !== DependencyKind.DynamicImport)
+            (!skipDynamicImports || (dep.kind !== DependencyKind.DynamicImport && dep.kind !== DependencyKind.DynamicRequire))
           ) {
             visit(dep.id, used.slice());
           }

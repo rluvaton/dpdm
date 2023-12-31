@@ -71,6 +71,16 @@ async function parseTreeRecursive(
     ) {
       newRequest = (node.arguments[0] as ts.StringLiteral).text;
       kind = DependencyKind.CommonJS;
+
+      let tmpNode = node;
+      while(tmpNode.parent) {
+        if(ts.isFunctionLike(tmpNode.parent)) {
+          kind = DependencyKind.DynamicRequire;
+          break;
+        }
+        tmpNode = tmpNode.parent;
+      }
+
     } else if (
       ts.isExportDeclaration(node) &&
       node.moduleSpecifier &&
